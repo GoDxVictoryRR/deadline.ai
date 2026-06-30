@@ -134,17 +134,27 @@ Default-deny rules are enforced across the entire database:
 
 *Below are placeholders for the visual demonstration of DeadlineAI:*
 
-### 1. Dashboard Page
-*(Replace this with a screenshot of the main Dashboard page showing analytics charts and the Pattern Analysis report)*
-`![Dashboard Screen](/screenshots/dashboard_mockup.png)`
+### 1. Dashboard Page & Login Page
+
+`<img width="1920" height="1080" alt="Screenshot (142)" src="https://github.com/user-attachments/assets/9084cde6-2b88-40df-afad-a32dc58836dc" />
+ <img width="1920" height="1080" alt="Screenshot (146)" src="https://github.com/user-attachments/assets/a9134581-e7ed-4fc2-9d67-d4f1eb9aef2b" />
+ <img width="1920" height="1080" alt="Screenshot (151)" src="https://github.com/user-attachments/assets/7e8a9dfb-a88f-44f3-95fe-90436c4f4907" />
+ <img width="1920" height="1080" alt="Screenshot (152)" src="https://github.com/user-attachments/assets/8f61bcb7-4cb9-4ed4-9fb0-bd3fc9ac4185" />
+`
 
 ### 2. Today's Reality View & Feasibility Banner
 *(Replace this with a screenshot of the Today view showing the Feasibility Banner and the active AgentTrace)*
-`![Today View Screen](/screenshots/today_view_mockup.png)`
+`<img width="1920" height="1080" alt="Screenshot (147)" src="https://github.com/user-attachments/assets/c65b7066-0dea-4bc2-8bc7-77859c23f6c8" />
+ <img width="1920" height="1080" alt="Screenshot (149)" src="https://github.com/user-attachments/assets/b220794c-2688-451b-ad6e-777166ad74f3" />
+ <img width="1920" height="1080" alt="Screenshot (148)" src="https://github.com/user-attachments/assets/d5cdf06e-fbea-476a-b862-c172163be028" />
+`
 
 ### 3. Voice Braindump Review Overlay
-*(Replace this with a screenshot of the Voice Braindump review card showing candidate tasks)*
-`![Voice Braindump Screen](/screenshots/voice_braindump_mockup.png)`
+
+`<img width="1920" height="1080" alt="Screenshot (143)" src="https://github.com/user-attachments/assets/7824ec54-8e91-4650-a8e2-72d3c97423dd" />
+ <img width="1920" height="1080" alt="Screenshot (150)" src="https://github.com/user-attachments/assets/78d54a65-078b-4be9-80df-56491d005f22" />
+ <img width="1920" height="1080" alt="Screenshot (149)" src="https://github.com/user-attachments/assets/1f65ae38-cfa6-4286-9f0d-6fc872a6a0da" />
+`
 
 ---
 
