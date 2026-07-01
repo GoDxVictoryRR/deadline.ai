@@ -26,6 +26,7 @@ export default function Settings() {
   const [signOutLoading, setSignOutLoading] = useState(false);
   const [seedLoading, setSeedLoading] = useState(false);
   const [seedSuccess, setSeedSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   // Load existing profile from Firestore
   useEffect(() => {
@@ -35,33 +36,46 @@ export default function Settings() {
       setGlobalEmail(profile.defaultAccountabilityEmail ?? '');
       setWebhookUrl(profile.appsScriptWebhookUrl ?? '');
       setLoading(false);
+    }).catch((err) => {
+      console.error('Failed to load profile:', err);
+      setError('Could not load profile settings from Firestore. Check database status or permissions.');
+      setLoading(false);
     });
   }, [user]);
 
   const handleSave = async () => {
     if (!user) return;
     setSaving(true);
-    await saveUserProfile(user.uid, {
-      availableHoursPerDay: availableHours,
-      defaultAccountabilityEmail: globalEmail || undefined,
-      appsScriptWebhookUrl: webhookUrl || undefined,
-    });
-    // Sync Zustand so the feasibility engine picks up the new hours immediately.
-    setDefaultAvailableHours(availableHours);
-    setSaving(false);
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
+    setError(null);
+    try {
+      await saveUserProfile(user.uid, {
+        availableHoursPerDay: availableHours,
+        defaultAccountabilityEmail: globalEmail || undefined,
+        appsScriptWebhookUrl: webhookUrl || undefined,
+      });
+      // Sync Zustand so the feasibility engine picks up the new hours immediately.
+      setDefaultAvailableHours(availableHours);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 2000);
+    } catch (err: any) {
+      console.error('Save failed:', err);
+      setError(err?.message || 'Failed to save settings. Please verify Firestore exists and Rules are deployed.');
+    } finally {
+      setSaving(false);
+    }
   };
 
   const handleSeedData = async () => {
     if (!user) return;
     setSeedLoading(true);
+    setError(null);
     try {
       await seedDemoTasks(user.uid);
       setSeedSuccess(true);
       setTimeout(() => setSeedSuccess(false), 3000);
-    } catch (err) {
+    } catch (err: any) {
       console.error('Seeding failed:', err);
+      setError(err?.message || 'Failed to seed tasks. Check Firestore rules or collection access.');
     } finally {
       setSeedLoading(false);
     }
@@ -92,6 +106,12 @@ export default function Settings() {
         </h1>
         <p className="text-slate-400 text-sm mt-1">Customize DeadlineAI to fit your schedule and workflow.</p>
       </div>
+
+      {error && (
+        <div className="bg-red-900/20 border border-red-500/30 text-red-200 px-4 py-3 rounded-xl text-xs font-semibold">
+          ⚠️ {error}
+        </div>
+      )}
 
       {/* Account Info */}
       <div className="bg-slate-800 border border-slate-700/50 rounded-2xl p-5">

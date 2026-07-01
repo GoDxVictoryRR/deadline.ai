@@ -59,7 +59,7 @@ export async function sendEmailNotification(
       method: 'POST',
       mode: 'cors',
       headers: {
-        'Content-Type': 'application/plain', // avoid CORS issues on text/plain JSON posts
+        'Content-Type': 'text/plain', // avoid CORS issues on text/plain JSON posts
       },
       body: JSON.stringify({
         to: recipientEmail,
